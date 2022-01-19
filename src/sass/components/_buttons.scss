@@ -1,0 +1,49 @@
+button {
+    cursor: pointer;
+}
+
+.btn {
+    &--filled {
+        border: none;
+        padding: var(--pad, 1.2em) 2em;
+        border-radius: 5px;
+        background-color: var(--clr-accent-300);
+        color: white;
+        transition: background-color ease 0.2s;
+
+        &:hover,
+        &:focus {
+            background-color: var(--clr-accent-200);
+        }
+
+        &:active {
+            background-color: var(--clr-accent-500);
+        }
+    }
+
+    &--empty {
+        $border-width: 2px;
+
+        border: var(--clr-accent-300) solid $border-width;
+        padding: calc(var(--pad, 1.2em) - $border-width)
+            calc(2em - $border-width);
+        border-radius: 5px;
+        background-color: transparent;
+        color: var(--clr-accent-300);
+        transition: background-color ease 0.2s, border ease 0.2s,
+            color ease 0.2s;
+
+        &:hover,
+        &:focus {
+            border: var(--clr-accent-200) solid $border-width;
+            background-color: var(--clr-accent-200);
+            color: white;
+        }
+
+        &:active {
+            border: var(--clr-accent-500) solid $border-width;
+            background-color: var(--clr-accent-500);
+            color: white;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+@use "../abstracts/" as *;
+
+.About {
+    &__title {
+        min-height: 360px;
+        padding: 6rem;
+        background-image: url(/assets/img/bgs/about_3.png);
+        background-attachment: fixed;
+        text-align: center;
+
+        h1 {
+            margin: 1rem;
+            color: white;
+            font-size: 40pt;
+        }
+
+        p {
+            color: var(--clr-primary-200);
+        }
+    }
+
+    &__content__wrapper {
+        padding: 100px 0;
+    }
+}

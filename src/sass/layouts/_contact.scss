@@ -1,0 +1,39 @@
+.Contact {
+    min-height: 100vh;
+    padding-top: 130px;
+    padding-bottom: 130px;
+    background-color: #212529;
+
+    &__title {
+        margin-bottom: 50px;
+        text-align: center;
+        h1 {
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 40pt;
+        }
+
+        p {
+            color: hsl(50, 0%, 80%);
+        }
+    }
+
+    &__content__wrapper {
+        display: flex;
+    }
+    &__content {
+        text-align: center;
+
+        h3 {
+            color: white;
+        }
+
+        p {
+            color: var(--clr-primary-200);
+        }
+
+        &:first-child {
+            margin: 0 auto;
+        }
+    }
+}

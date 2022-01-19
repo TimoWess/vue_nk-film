@@ -1,0 +1,9 @@
+@use "breakpoints" as *;
+
+@mixin mq($key, $minmax: min) {
+    $size: map-get($breakpoints, $key);
+
+    @media only screen and (#{$minmax}-width: $size) {
+        @content;
+    }
+}

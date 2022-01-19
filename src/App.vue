@@ -1,4 +1,5 @@
 <template>
+  <!-- <Header/> -->
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
@@ -6,7 +7,16 @@
   <router-view/>
 </template>
 
-<style lang="scss">
+<script>
+// import Header from "./components/Header.vue"
+export default {
+  components: {
+    // Header,
+  }
+}
+</script>
+
+// <style lang="scss" scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
