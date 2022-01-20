@@ -2,10 +2,9 @@
   <header className="Header" id="Header">
             <div className="Header__wrapper wrapper">
                 <router-link to="/" id="header__logo" onClick={goTop}>
-                    <img src={logo} alt="" />
+                    <img src="@/assets/img/logo_nkfilm_200px.png" alt="" />
                 </router-link>
                 <div className="Header__link__container">
-                    {/* eslint-disable-next-line */}
                     <ul role="list">
                         <li className="center-item">
                             <router-link
@@ -97,25 +96,20 @@
                     {/* </div> */}
                     <button
                         className="Header__link__btn"
-                        onClick={() => {
-                            darkener.current.style.visibility = "visible";
-                            darkener.current.style.opacity = "0.5";
-                            mobileMenu.current.style.left = "50%";
-                        }}
+                        onClick="displayMobileNav"
                     >
                         <i className="fas fa-bars"></i>
                     </button>
                     <div
                         className="Header__link__darkener"
                         ref="darkener"
-                        style={{ opacity: 0 }}
+                       
                         v-on:click="hideMobileNav(false)"
                     ></div>
                     <div
                         className="Header__link__wrapper--mobile"
                         ref="mobileMenu"
                     >
-                        {/* eslint-disable-next-line */}
                         <ul role="list">
                             <li>
                                 <router-link
@@ -171,6 +165,20 @@
 
 <script>
 export default {
+    mounted() {
+        function handleScroll() {
+            const header = document.getElementById("Header");
+            if (window.scrollY === 0) {
+                header.style.backgroundColor = "rgba(68, 68, 68, 0.4)";
+                header.style.height = "110px";
+            } else {
+                header.style.backgroundColor = "hsla(210, 11%, 15%, 1)";
+                header.style.height = "70px";
+            }
+        }
+
+        window.addEventListener("scroll", handleScroll)
+    },
 	methods: {
 		hideMobileNav(goTop) {
         this.$refs.mobileMenu.style.left = "100%";
@@ -183,6 +191,12 @@ export default {
 
     goTop() {
         window.scrollTo(0, 0);
+    },
+    
+    displayMobileNav() {
+        this.$refs.darkener.current.style.visibility = "visible";
+                            this.$refs.darkener.current.style.opacity = "0.5";
+                            this.$refs.mobileMenu.current.style.left = "50%";
     }
 	}
 }

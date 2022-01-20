@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div className="Profile__image__wrapper">
-                <img :src="`/assets/${image}`" :alt="name" />
+                <img :src="require(`@/assets/${image}`)" :alt="name" />
             </div>
         </div>
 </template>
