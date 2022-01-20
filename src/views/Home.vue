@@ -127,13 +127,13 @@
                             </p>
                         </div>
                     </div>
-                    <Link to="services">
+                    <router-link to="/services">
                         <button
                             className="btn--empty"
                         >
                             Mehr erfahren!
                         </button>
-                    </Link>
+                    </router-link>
                 </div>
             </section>
             <div id="pt">

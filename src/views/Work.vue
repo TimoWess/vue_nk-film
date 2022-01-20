@@ -1,8 +1,6 @@
 <template>
   <div className="Work">
-            {!ytActive || (
-                <YtPopup embedLink={embdeLink} closePopup={closePopup} />
-            )}
+            <YtPopup v-if="ytActive" :embedLink="embedLink" :closePopup="closePopup" />
             <section className="Work__title center-item">
                 <div>
                     <h1>Work</h1>
@@ -58,7 +56,7 @@
                                 :projectTitle="value.title"
                                 :projectVideoLink="value.video"
                                 :projectTheme="value.theme"
-                                :setEmbed="value.video ? setEmbed : null"
+                                :setEmbed="setEmbed"
                             />
                 </div>
             </section>
@@ -68,19 +66,31 @@
 <script>
 import projectList from "@/assets/json/ProjectList.json";
 import Project from "@/components/Project.vue"
+import YtPopup from "@/components/YtPopup.vue"
 export default {
 	components: {
-		Project
+		Project,
+		YtPopup
 	},
 	data() {
 		return {
 			projectList,
+			ytActive: false,
+			embedLink: ""
 		}
 	},
 	mounted() {
 		this.displayTheme("show all");
 	},
 	methods: {
+		setEmbed(embed) {
+			this.embedLink = embed;
+			this.ytActive = true;
+		},
+		closePopup() {
+			this.ytActive = false;
+			this.embedLink = "";
+		},
 		displayTheme(theme) {
 			let activeProjects =
 				theme === "show all"

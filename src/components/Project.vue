@@ -2,6 +2,7 @@
    <div
         className="Project"
         :data-theme="projectTheme"
+        @click="() => {setEmbed(projectVideoLink)}"
     >
         <img :src="require('@/assets/'+projectImage)" alt="" />
         <div className="Project__title__info">
@@ -14,7 +15,7 @@
 <script>
 export default {
 	props: {
-		setEmbde: Function,
+		setEmbed: Function,
 		projectVideoLink: String,
 		projectTitle: String,
 		projectImage: String,
