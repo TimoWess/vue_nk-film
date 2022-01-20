@@ -207,6 +207,10 @@ select {
 .Header__link__container--mobile a:hover, .Header__link__container--mobile a:focus {
   color: var(--clr-accent-300);
 }
+.Header__link__container--mobile .Header__link__social {
+  display: flex;
+  gap: 1.5rem;
+}
 .Header__link__container--mobile .Header__link__btn {
   height: 50px;
   width: 50px;

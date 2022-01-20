@@ -50,7 +50,7 @@
                 </div>
                 <div className="Work__content wrapper" ref="contentWrapper">
                             <Project 
-							v-for="value in projectList"
+							v-for="value in projectList.slice(0, 21)"
                                 :key="value.title"
                                 :projectImage="value.image"
                                 :projectTitle="value.title"
@@ -76,11 +76,18 @@ export default {
 		return {
 			projectList,
 			ytActive: false,
-			embedLink: ""
+			embedLink: "",
+			rows: 2
 		}
 	},
 	mounted() {
+		this.setWorkIndicator();
 		this.displayTheme("show all");
+		window.onresize = this.handleResize;
+
+	},
+	unmounted() {
+		window.onresize = null;
 	},
 	methods: {
 		setEmbed(embed) {
@@ -106,6 +113,7 @@ export default {
 			if (!activeProjects && !inactiveProjects) return;
 			if (inactiveProjects) {
 				for (const project of inactiveProjects) {
+					project.dataset.active = false;
 					project.style.opacity = 0;
 					project.style.pointerEvents = "none";
 				}
@@ -115,6 +123,7 @@ export default {
 				let aciveCollumIndex = 0;
 				let activeRowIndex = 0;
 				for (const project of activeProjects) {
+					project.dataset.active = true;
 					project.style.opacity = 1;
 					project.style.pointerEvents = "initial";
 					project.style.left = aciveCollumIndex * 33.33 + "%";
@@ -128,9 +137,9 @@ export default {
 				}
 			}
 
-			let rows = Math.ceil(activeProjects.length / 3);
+			this.rows = Math.ceil(activeProjects.length / 3);
 			this.$refs.contentWrapper.style.height = `${
-				(rows * this.$refs.contentWrapper.offsetWidth) / 3
+				(this.rows * this.$refs.contentWrapper.offsetWidth) / 3
 			}px`;
 		},
 		setWorkIndicator() {
@@ -143,6 +152,24 @@ export default {
 			document.getElementsByClassName("Work--active")[0].classList.remove("Work--active");
 			e.target.classList.add("Work--active");
 			this.setWorkIndicator();
+		},
+		handleResize() {
+			let projects = document.querySelectorAll(".Project[data-active=true]");
+			if (!projects) return;
+			let aciveCollumIndex = 0;
+			let activeRowIndex = 0;
+			let width = projects[0].offsetWidth; 
+			for (const project of projects) {
+				project.style.top = activeRowIndex * width + "px";
+				aciveCollumIndex++;
+				if (aciveCollumIndex >= 3) {
+					aciveCollumIndex = 0;
+					activeRowIndex++;
+				}
+			}
+			this.$refs.contentWrapper.style.height = `${
+				(this.rows * width)
+			}px`;
 		}
 	}
 

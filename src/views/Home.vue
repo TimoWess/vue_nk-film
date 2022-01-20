@@ -130,6 +130,7 @@
                     <router-link to="/services">
                         <button
                             className="btn--empty"
+                            @click="goTop"
                         >
                             Mehr erfahren!
                         </button>

@@ -80,6 +80,11 @@
             }
         }
 
+        .Header__link__social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
         .Header__link__btn {
             height: 50px;
             width: 50px;
