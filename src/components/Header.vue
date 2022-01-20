@@ -9,10 +9,8 @@
                         <li className="center-item">
                             <router-link
                                 to="/"
-                                className="
-                                    
-                                "
-                                onClick={goTop}
+                                className=""
+                                v-on:click="goTop"
                             >
                                 HOME
                             </router-link>
@@ -21,7 +19,7 @@
                             <router-link
                                 to="/about"
                                 className=""
-                                onClick={goTop}
+                                v-on:click="goTop"
                             >
                                 ABOUT
                             </router-link>
@@ -30,7 +28,7 @@
                             <router-link
                                 to="/services"
                                 className=""
-                                onClick={goTop}
+                                v-on:click="goTop"
                             >
                                 SERVICES
                             </router-link>
@@ -39,7 +37,7 @@
                             <router-link
                                 to="/work"
                                 className=""
-                                onClick={goTop}
+                                v-on:click="goTop"
                             >
                                 WORK
                             </router-link>
@@ -48,7 +46,7 @@
                             <router-link
                                 to="/contact"
                                 className=""
-                                onClick={goTop}
+                                v-on:click="goTop"
                             >
                                 CONTACT
                             </router-link>
@@ -77,7 +75,7 @@
                     </ul>
                 </div>
                 <div className="Header__link__container--mobile">
-                    {/* <div className="Header__link__social"> */}
+                    <div className="Header__link__social"> 
                     <a href="https://www.facebook.com">
                         <div>
                             <i className="fab fa-facebook"></i>
@@ -93,10 +91,10 @@
                             <i className="fab fa-linkedin"></i>
                         </div>
                     </a>
-                    {/* </div> */}
+                    </div> 
                     <button
                         className="Header__link__btn"
-                        onClick="displayMobileNav"
+                        v-on:click="displayMobileNav"
                     >
                         <i className="fas fa-bars"></i>
                     </button>
@@ -194,9 +192,9 @@ export default {
     },
     
     displayMobileNav() {
-        this.$refs.darkener.current.style.visibility = "visible";
-                            this.$refs.darkener.current.style.opacity = "0.5";
-                            this.$refs.mobileMenu.current.style.left = "50%";
+        this.$refs.darkener.style.visibility = "visible";
+        this.$refs.darkener.style.opacity = "0.5";
+        this.$refs.mobileMenu.style.left = "50%";
     }
 	}
 }

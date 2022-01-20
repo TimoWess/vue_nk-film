@@ -9,7 +9,7 @@
                         </span>
                     </p>
                     <h1 className="Home__dark" style="--delay: 0.2s">
-                        <span style="fontSize: 30pt, fontWeight: bold">
+                        <span style="fontSize: 30pt; fontSeight: bold">
                             DEIN WERBE-FILM.
                         </span>
                     </h1>
@@ -33,10 +33,9 @@
             </section>
             <section className="Home__whatwedo">
                 <div className="Home__whatwedo__wrapper wrapper">
-                    {/* eslint-disable-next-line */}
                     <ul className="Home__whatwedo__examples" role="list">
                         <li
-          
+          v-on:click="setToggleActiveDescription(0)"
                         >
                             <div className="inner_circle">
                                 <i className="fas fa-lightbulb"></i>
@@ -45,6 +44,7 @@
                         </li>
                         <li
                             
+          v-on:click="setToggleActiveDescription(1)"
                         >
                             <div className="inner_circle">
                                 <i className="fas fa-film"></i>
@@ -52,7 +52,7 @@
                             <h3>Dreharbeit</h3>
                         </li>
                         <li
-                            
+                           v-on:click="setToggleActiveDescription(2)" 
                         >
                             <div className="inner_circle">
                                 <i className="fas fa-cog"></i>
@@ -60,7 +60,7 @@
                             <h3>Postproduktion</h3>
                         </li>
                         <li
-                            
+                           v-on:click="setToggleActiveDescription(3)" 
                         >
                             <div className="inner_circle">
                                 <i className="fas fa-rocket"></i>
@@ -70,7 +70,8 @@
                     </ul>
                     <div className="Home__whatwedo__content">
                         <div
-                            
+                        class="Home__whatwedo__description"
+                        :class="{'description--active': activeDes===0}"
                         >
                             <p>
                                 Die wichtigste Phase der Filmerstellung. Mit
@@ -82,7 +83,8 @@
                             </p>
                         </div>
                         <div
-                            
+                           class="Home__whatwedo__description"
+                        :class="{'description--active': activeDes===1}" 
                         >
                             <p>
                                 Hier spielen wir all unsere Stärken aus: über
@@ -96,7 +98,8 @@
                             </p>
                         </div>
                         <div
-                            
+                           class="Home__whatwedo__description"
+                        :class="{'description--active': activeDes===2}" 
                         >
                             <p>
                                 Hier entsteht die Magie. Nichts ist unmöglich,
@@ -113,7 +116,8 @@
                             </p>
                         </div>
                         <div
-                            
+                           class="Home__whatwedo__description"
+                        :class="{'description--active': activeDes===3}" 
                         >
                             <p>
                                 Lassen sie ihren Film nicht im digitalen Nirwana
@@ -133,7 +137,7 @@
                 </div>
             </section>
             <div id="pt">
-                <video muted playsInline loop>
+                <video muted playsInline loop ref="backgroundVideo">
                     <source src="@/assets/video/showreel.mp4" />
                 </video>
             </div>
@@ -144,10 +148,24 @@
 
 export default {
   name: 'Home',
+  data() {
+      return {
+          activeDes: 0
+      }
+  },
   methods: {
     goTop() {
         window.scrollTo(0, 0);
     },
+    setToggleActiveDescription(index) {
+        this.activeDes = index;
+    }
+  },
+  mounted() {
+      setTimeout(() => {
+
+          this.$refs.backgroundVideo.play();      
+      }, 2000)
   }
 }
 </script>
